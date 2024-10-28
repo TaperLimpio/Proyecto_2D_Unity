@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mov_Jugador : MonoBehaviour
 {
@@ -10,20 +12,21 @@ public class Mov_Jugador : MonoBehaviour
     [SerializeField]
     private float fuerzaSalto;
 
+    private Vida vida;
+
     [SerializeField]
     private int limiteSaltos = 2;  // Límite de saltos (2 para doble salto)
 
     private int saltosRestantes;  // Contador de saltos disponibles
 
-    private bool estaMuerto;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
     private Animator animador;
     private SpriteRenderer RenderSprite;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         animador = GetComponent<Animator>();
         RenderSprite = GetComponent<SpriteRenderer>();
         saltosRestantes = limiteSaltos;  // Inicialmente puede saltar hasta el límite
@@ -33,21 +36,18 @@ public class Mov_Jugador : MonoBehaviour
     void Update()
     {
         // Captura controles
-        var movimientoX = Input.GetAxis("Horizontal");
-        var movimiento = new Vector2(movimientoX, 0);
-        transform.Translate(movimiento * Time.deltaTime * velocidad);
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad,rb.velocity.y);
 
         // Verifica si el jugador puede saltar (si tiene saltos restantes)
         if (Input.GetKeyDown(KeyCode.Space) && saltosRestantes > 0)
         {
             var impulso = new Vector2(0, fuerzaSalto);
-            rigidbody.AddForce(impulso, ForceMode2D.Impulse);
+            rb.AddForce(impulso, ForceMode2D.Impulse);
             saltosRestantes--;  // Reduce el número de saltos disponibles
         }
 
         // Gestiona animaciones
         calcularAnimacion();
-        
     }
 
     void calcularAnimacion(){
@@ -68,20 +68,36 @@ public class Mov_Jugador : MonoBehaviour
         }
 
         // Verifica el estado de salto y caída
-        if (rigidbody.velocity.y > 0.0f)
+        if (rb.velocity.y  > 1.1f)
         {
             animador.SetBool("Saltando", true);
         }
-        else if (rigidbody.velocity.y < 0.0f)
+        else if (rb.velocity.y  < -1.1f)
         {
             animador.SetBool("Cayendo", true);
             animador.SetBool("Saltando", false);
         }
-        else if (rigidbody.velocity.y == 0.0f)
+        else if (rb.velocity.y == 0)
         {
             animador.SetBool("Saltando", false);
             animador.SetBool("Cayendo", false);
             saltosRestantes = limiteSaltos;  // Restablece los saltos al tocar el suelo
+        }
+         
+    }
+
+    private void morir(){
+        animador.SetTrigger("Muerto");
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+
+    public void ReiniciarJuego(){
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    private void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.tag == "Instakill"){
+            morir();
         }
     }
 }
