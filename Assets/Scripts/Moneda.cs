@@ -6,4 +6,14 @@ public class Moneda : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] int valor = 1;
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) // Comprobar si es una moneda
+        {
+            collision.gameObject.GetComponent<Inventario>().obteneMoneda(valor);
+            Destroy(gameObject); // Destruir la moneda cuando es recogida
+        }
+    }
 }

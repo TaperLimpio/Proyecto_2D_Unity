@@ -29,6 +29,7 @@ public class Mov_Jugador : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animador = GetComponent<Animator>();
         RenderSprite = GetComponent<SpriteRenderer>();
+        vida = GetComponent<Vida>();
         saltosRestantes = limiteSaltos;  // Inicialmente puede saltar hasta el límite
     }
 
@@ -46,6 +47,7 @@ public class Mov_Jugador : MonoBehaviour
             saltosRestantes--;  // Reduce el número de saltos disponibles
         }
 
+        vida.actualizarUI();
         // Gestiona animaciones
         calcularAnimacion();
     }
@@ -89,6 +91,7 @@ public class Mov_Jugador : MonoBehaviour
     private void morir(){
         animador.SetTrigger("Muerto");
         rb.bodyType = RigidbodyType2D.Static;
+        vida.morir();
     }
 
     public void ReiniciarJuego(){
