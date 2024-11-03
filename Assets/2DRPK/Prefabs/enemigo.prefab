@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5351894307835865351}
   - component: {fileID: 9033801152068330264}
-  - component: {fileID: 563540471125474622}
   - component: {fileID: 1493189614686274919}
   - component: {fileID: 153144695193771454}
-  - component: {fileID: 2857960049527401642}
+  - component: {fileID: 176502554312685250}
+  - component: {fileID: 1304650408119017007}
   m_Layer: 0
   m_Name: enemigo
   m_TagString: Untagged
@@ -88,21 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &563540471125474622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9069896422903718282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af9a331f85dd354fa86d5da5c81e12b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 1.5
-  damage: 10
-  attackCooldown: 1
 --- !u!61 &1493189614686274919
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,7 +154,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2857960049527401642
+--- !u!114 &176502554312685250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,3 +168,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDistance: 2
   moveSpeed: 2
+--- !u!114 &1304650408119017007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9069896422903718282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af9a331f85dd354fa86d5da5c81e12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1.5
+  damage: 10
+  attackCooldown: 1

@@ -25,6 +25,7 @@ public class Vida : MonoBehaviour
     }
 
     private void daño(int cantidad){ 
+        Debug.Log("Se recibio daño");
         if(vida !< 0) this.vida -= cantidad; 
     }
 
