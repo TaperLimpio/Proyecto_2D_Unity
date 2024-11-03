@@ -37,7 +37,7 @@ public class Mov_Jugador : MonoBehaviour
     void Update()
     {
         // Captura controles
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad,rb.velocity.y);
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad, rb.velocity.y);
 
         // Verifica si el jugador puede saltar (si tiene saltos restantes)
         if (Input.GetKeyDown(KeyCode.Space) && saltosRestantes > 0)
@@ -52,7 +52,8 @@ public class Mov_Jugador : MonoBehaviour
         calcularAnimacion();
     }
 
-    void calcularAnimacion(){
+    void calcularAnimacion()
+    {
         var movimientoX = Input.GetAxis("Horizontal");
         if (movimientoX > 0)
         {
@@ -70,11 +71,11 @@ public class Mov_Jugador : MonoBehaviour
         }
 
         // Verifica el estado de salto y caída
-        if (rb.velocity.y  > 1.1f)
+        if (rb.velocity.y > 1.1f)
         {
             animador.SetBool("Saltando", true);
         }
-        else if (rb.velocity.y  < -1.1f)
+        else if (rb.velocity.y < -1.1f)
         {
             animador.SetBool("Cayendo", true);
             animador.SetBool("Saltando", false);
@@ -85,21 +86,25 @@ public class Mov_Jugador : MonoBehaviour
             animador.SetBool("Cayendo", false);
             saltosRestantes = limiteSaltos;  // Restablece los saltos al tocar el suelo
         }
-         
+
     }
 
-    private void morir(){
+    private void morir()
+    {
         animador.SetTrigger("Muerto");
         rb.bodyType = RigidbodyType2D.Static;
         vida.morir();
     }
 
-    public void ReiniciarJuego(){
+    public void ReiniciarJuego()
+    {
         SceneManager.LoadScene("SampleScene");
     }
 
-    private void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag == "Instakill"){
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Instakill")
+        {
             morir();
         }
     }
