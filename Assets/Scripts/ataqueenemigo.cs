@@ -7,14 +7,16 @@ public class EnemyAttack : MonoBehaviour
     public float attackCooldown = 1f;
 
     private float lastAttackTime = 0f;
-    private GameObject player;
+    private BoxCollider2D colision;
+    private Animator animador;
 
     void Start()
     {
         // Encuentra al jugador en la escena
-        player = GameObject.FindGameObjectWithTag("Player");
+        animador = GetComponentInParent<Animator>();
+        colision = GetComponent<BoxCollider2D>();
     }
-
+    /*
     void Update()
     {
         if (player != null)
@@ -28,15 +30,29 @@ public class EnemyAttack : MonoBehaviour
             }
         }
     }
-
-    void Attack()
+    */
+    private void Attack(Collider2D other)
     {
-
         Debug.Log("¡Ataque realizado! Daño: " + damage);
-
-        // Actualiza el tiempo del último ataque
+        animador.SetBool("corriendo",false);
+        animador.SetBool("atacando",true);
+        // Actualiza el tiempo del último ataque 
+        other.gameObject.GetComponent<Vida>().daño(damage);
+        other.gameObject.GetComponent<Mov_Jugador>().tomarDaño();
         lastAttackTime = Time.time;
-
-
     }
+
+    public void DontAttack(){
+        animador.SetBool("atacando",false);
+        animador.SetBool("corriendo",true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.tag == "Player" && Time.time >= lastAttackTime + attackCooldown){
+            Debug.Log("Se detecto al jugador");
+            Attack(other);
+            lastAttackTime = Time.time;
+        }
+    }
+
 }

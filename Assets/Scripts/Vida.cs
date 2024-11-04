@@ -24,12 +24,12 @@ public class Vida : MonoBehaviour
         this.MAX_VIDA = can;
     }
 
-    private void daño(int cantidad){ 
+    public void daño(int cantidad){ 
         Debug.Log("Se recibio daño");
-        if(vida !< 0) this.vida -= cantidad; 
+        if(vida != 0) this.vida -= cantidad; 
     }
 
-    private void curacion(int cantidad){ 
+    public void curacion(int cantidad){ 
         this.vida += cantidad; 
         if(vida > MAX_VIDA) this.vida = MAX_VIDA;
     }

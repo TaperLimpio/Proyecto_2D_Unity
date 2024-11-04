@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,6 +37,7 @@ public class Mov_Jugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Captura controles
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad,rb.velocity.y);
 
@@ -46,10 +48,11 @@ public class Mov_Jugador : MonoBehaviour
             rb.AddForce(impulso, ForceMode2D.Impulse);
             saltosRestantes--;  // Reduce el número de saltos disponibles
         }
-
         vida.actualizarUI();
         // Gestiona animaciones
         calcularAnimacion();
+
+
     }
 
     void calcularAnimacion(){
@@ -88,10 +91,16 @@ public class Mov_Jugador : MonoBehaviour
          
     }
 
-    private void morir(){
+    public void tomarDaño(){
+        if(vida.getVida() == 0){
+            morir();
+        }
+    }
+
+    public void morir(){
         animador.SetTrigger("Muerto");
         rb.bodyType = RigidbodyType2D.Static;
-        vida.morir();
+        if (GetComponent<Vida>()) vida.morir();
     }
 
     public void ReiniciarJuego(){
