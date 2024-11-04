@@ -21,7 +21,6 @@ public class Vida : MonoBehaviour
     public void setVida(int can)
     {
         this.vida = can;
-        actualizarUI();
         OnVidaChanged?.Invoke(vida); // Notifica el cambio
     }
 
@@ -42,7 +41,6 @@ public class Vida : MonoBehaviour
             vida -= cantidad;
             if (vida < 0) vida = 0;
             Debug.Log("Se recibió daño. Vida restante: " + vida);
-            actualizarUI();
             OnVidaChanged?.Invoke(vida); // Notifica el cambio
         }
     }
@@ -51,19 +49,13 @@ public class Vida : MonoBehaviour
     {
         vida += cantidad;
         if (vida > MAX_VIDA) vida = MAX_VIDA;
-        actualizarUI();
         OnVidaChanged?.Invoke(vida); // Notifica el cambio
     }
 
-    public void actualizarUI()
-    {
-        this.vidaui.text = "HP: " + vida.ToString() + " / " + MAX_VIDA.ToString();
-    }
 
     public void morir()
     {
         this.vida = 0;
-        actualizarUI();
         Debug.Log("El jugador ha muerto.");
         OnVidaChanged?.Invoke(vida); // Notifica el cambio
     }

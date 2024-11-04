@@ -48,7 +48,12 @@ public class Mov_Jugador : MonoBehaviour
             rb.AddForce(impulso, ForceMode2D.Impulse);
             saltosRestantes--;  // Reduce el número de saltos disponibles
         }
-        vida.actualizarUI();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            
+        }
+
         // Gestiona animaciones
         calcularAnimacion();
 

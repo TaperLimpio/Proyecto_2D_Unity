@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Instakill
+  - Barradevida
+  - Enemigo
   layers:
   - Default
   - TransparentFX

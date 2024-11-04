@@ -6,8 +6,14 @@ public class AtaqueJugador : MonoBehaviour
 {
     [SerializeField] public int daño = 3;
 
-    private void OnTriggerEnter2D(Collider2D collider){
+    public void NoAttack(){
+        GetComponentInParent<Animator>().SetBool("atacando",false);
+    }
 
+    private void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.tag == "Enemigo"){
+            other.gameObject.GetComponent<Vida>().daño(daño);
+        }
     }
 
 }

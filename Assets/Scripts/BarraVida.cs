@@ -10,25 +10,34 @@ public class BarradeVida : MonoBehaviour
 
     private void Start()
     {
-        slider = GetComponent<Slider>();
+        slider = GameObject.FindWithTag("Barradevida").GetComponent<Slider>();
         if (slider == null)
         {
             Debug.LogError("No se encontró el componente Slider en " + gameObject.name);
             return;
+        }else{
+            Debug.Log("Se logro encontrar el slider");
         }
-
         vida = GetComponent<Vida>();
         if (vida == null)
         {
             Debug.LogError("No se encontró el componente Vida en " + gameObject.name);
             return;
+        }else{
+            Debug.Log("Se logro encontrar el slider");
         }
+
+        
 
         CambiarVidaMaxima(vida.getMaxVida());
         CambiarVidaActual(vida.getVida());
 
         // Suscribirse al evento de cambio de vida
         vida.OnVidaChanged += CambiarVidaActual;
+    }
+
+    private void Update(){
+        
     }
 
     private void OnDestroy()
