@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class JefeAtaque : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public int damage = 10;
+
+    private void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.tag == "Player"){
+            other.gameObject.GetComponent<Vida>().daño(damage);
+            other.gameObject.GetComponent<Mov_Jugador>().tomarDaño();   
+        }
+    
     }
 }

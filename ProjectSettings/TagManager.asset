@@ -8,6 +8,7 @@ TagManager:
   - Barradevida
   - Enemigo
   - Destructible
+  - Jefe
   layers:
   - Default
   - TransparentFX

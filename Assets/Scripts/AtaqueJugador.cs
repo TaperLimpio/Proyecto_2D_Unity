@@ -16,6 +16,12 @@ public class AtaqueJugador : MonoBehaviour
             other.gameObject.GetComponent<Vida>().daño(daño);
             other.gameObject.GetComponent<EnemyMovement2D>().tomarDañoEnemigo();
         }
+        if(other.gameObject.tag == "Jefe"){
+            other.gameObject.GetComponent<Animator>().SetBool("dañado",true);
+            other.gameObject.GetComponent<Vida>().daño(daño);
+            other.gameObject.GetComponent<Jefemovimiento>().tomarDañoEnemigo();
+        }
+
         if(other.gameObject.tag == "Destructible"){
             other.gameObject.GetComponent<Destructible>().Dropear();
         }

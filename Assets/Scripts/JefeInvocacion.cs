@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class JefeInvocacion : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject invocacion;
+    [SerializeField] private GameObject[] InvoPosiciones;
     void Start()
     {
-        
+        Invoke("InvocarMinions",15f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void InvocarMinions(){
+        foreach(GameObject pos in InvoPosiciones){
+            Instantiate(invocacion,pos.transform.position,pos.transform.rotation);
+        }
     }
+
 }
