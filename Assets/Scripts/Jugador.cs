@@ -51,13 +51,17 @@ public class Mov_Jugador : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            
+            animador.SetBool("Golpeando",true);
         }
 
         // Gestiona animaciones
         calcularAnimacion();
 
 
+    }
+
+    public void NoAtacar(){
+        animador.SetBool("Golpeando",false);
     }
 
     void calcularAnimacion()

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4719441524616588491}
   - component: {fileID: 5811002400577819785}
   - component: {fileID: 302690335552266936}
+  - component: {fileID: 3107785635804568754}
   m_Layer: 0
   m_Name: Murcielago
   m_TagString: Enemigo
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -4795363162621231457, guid: 6d7cd4f7505dc674c891ca8946cfd98b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -167,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec209635ce3155748a984b3758ee8c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 2
+  moveDistance: 4
   moveSpeed: 2
 --- !u!114 &302690335552266936
 MonoBehaviour:
@@ -184,6 +185,20 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 10
   attackCooldown: 1
+--- !u!114 &3107785635804568754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830906279434103136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee26ac307f06984ab42eebab082f67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_VIDA: 10
+  vida: 10
 --- !u!1 &5892034701348124346
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +264,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.22229767, y: 0.037072778}
+  m_Offset: {x: 1.2325191, y: -0.15212089}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -260,7 +275,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7800293, y: 1.6844101}
+  m_Size: {x: 1.7595863, y: 1.3060228}
   m_EdgeRadius: 0
 --- !u!114 &6229383227323901277
 MonoBehaviour:
@@ -275,5 +290,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 1.5
-  damage: 10
+  damage: 5
   attackCooldown: 1

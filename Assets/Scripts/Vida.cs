@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UI;
 
 public class Vida : MonoBehaviour
 {
-    [SerializeField] private Text vidaui;
     [SerializeField] private int MAX_VIDA = 50;
     [SerializeField] private int vida = 50;
 
