@@ -13,8 +13,6 @@ public class Destructible : MonoBehaviour
     }
 
     public void Dropear(){
-        drop.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        drop.GetComponent<Rigidbody2D>().mass = 2;
         Instantiate(drop,dropposicion.position,dropposicion.rotation);
         Destroy(gameObject);
     }

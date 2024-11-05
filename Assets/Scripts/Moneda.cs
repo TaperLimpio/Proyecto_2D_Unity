@@ -16,4 +16,13 @@ public class Moneda : MonoBehaviour
             Destroy(gameObject); // Destruir la moneda cuando es recogida
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) // Comprobar si es una moneda
+        {
+            collision.gameObject.GetComponent<Inventario>().obteneMoneda(valor);
+            Destroy(gameObject); // Destruir la moneda cuando es recogida
+        }
+    }
 }

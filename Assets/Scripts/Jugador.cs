@@ -9,20 +9,17 @@ public class Mov_Jugador : MonoBehaviour
 {
     [SerializeField]
     private float velocidad;
-
     [SerializeField]
     private float fuerzaSalto;
-
     private Vida vida;
-
     [SerializeField]
     private int limiteSaltos = 2;  // Límite de saltos (2 para doble salto)
-
     private int saltosRestantes;  // Contador de saltos disponibles
-
     private Rigidbody2D rb;
     private Animator animador;
     private SpriteRenderer RenderSprite;
+    
+    public bool peleandoconjefe = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +34,6 @@ public class Mov_Jugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // Captura controles
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * velocidad, rb.velocity.y);
 
@@ -56,8 +52,6 @@ public class Mov_Jugador : MonoBehaviour
 
         // Gestiona animaciones
         calcularAnimacion();
-
-
     }
 
     public void NoAtacar(){
