@@ -11,7 +11,7 @@ public class Inventario : MonoBehaviour
     private bool[] llaves;
     
     void Start(){
-        llaves = new bool[2];
+        llaves = new bool[3];
         Debug.Log(llaves.Length);
         for (int i = 0; i < llaves.Length; i++) { llaves[i] = false; }
     }
@@ -37,11 +37,7 @@ public class Inventario : MonoBehaviour
     }
 
     public bool VerificarLLaves(int keycode){
-        if(llaves[keycode]){
-            return true;
-        }else{
-            return false;
-        }
+        return llaves[keycode];
     }
 
 }

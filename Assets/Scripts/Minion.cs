@@ -10,7 +10,7 @@ public class Minion : MonoBehaviour
     void Start()
     {
         positionJugador = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        Invoke("muriendo",10f);
+        Invoke("muriendo",8f);
     }
 
     public void terminoInvocacion(){
