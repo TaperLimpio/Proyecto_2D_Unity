@@ -39,6 +39,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Esperando
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: atacando
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7205978337480109801}
   m_Solo: 0
@@ -143,7 +146,13 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: atacando
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Esperando
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5061255103157730114}
   m_Solo: 0
@@ -307,6 +316,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: "Da\xF1ado"
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: corriendo
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5061255103157730114}
   m_Solo: 0
@@ -330,6 +342,9 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
+    m_ConditionEvent: Esperando
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
     m_ConditionEvent: atacando
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -386,6 +401,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: corriendo
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: "Da\xF1ado"
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2346842157536899751}
   m_Solo: 0
@@ -410,6 +428,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: corriendo
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: atacando
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2346842157536899751}
@@ -436,6 +457,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: atacando
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: corriendo
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8237572973376891435}
   m_Solo: 0
@@ -460,6 +484,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: atacando
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: "Da\xF1ado"
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8237572973376891435}
@@ -510,6 +537,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Esperando
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: atacando
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7205978337480109801}

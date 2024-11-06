@@ -27,9 +27,11 @@ public class EnemyMovement2D : MonoBehaviour
 
     public void nodañado(){
         animador.SetBool("Dañado",false);
+        animador.SetBool("corriendo",true);
     }
 
     public void tomarDañoEnemigo(){
+        animador.SetBool("corriendo",false);
         if(vida.getVida() == 0){
             animador.SetTrigger("Muerto");
         }
