@@ -12,6 +12,7 @@ public class Vida : MonoBehaviour
     // Evento para notificar cambios en la vida
     public delegate void VidaChanged(int nuevaVida);
     public event VidaChanged OnVidaChanged;
+    public event VidaChanged OnMaxVidaChanged;
 
     public int getVida()
     {
@@ -45,11 +46,16 @@ public class Vida : MonoBehaviour
         }
     }
 
-    public void curacion(int cantidad)
+    public void curacion()
     {
-        vida += cantidad;
-        if (vida > MAX_VIDA) vida = MAX_VIDA;
+        vida = MAX_VIDA;
         OnVidaChanged?.Invoke(vida); // Notifica el cambio
+    }
+
+    public void AumentarVida(int cantidad){
+        MAX_VIDA += cantidad;
+        vida = MAX_VIDA;
+        OnMaxVidaChanged?.Invoke(MAX_VIDA);
     }
 
 

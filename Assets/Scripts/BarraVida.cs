@@ -34,6 +34,7 @@ public class BarradeVida : MonoBehaviour
 
         // Suscribirse al evento de cambio de vida
         vida.OnVidaChanged += CambiarVidaActual;
+        vida.OnMaxVidaChanged += CambiarVidaMaxima;
     }
 
     private void Update(){

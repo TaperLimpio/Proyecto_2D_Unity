@@ -50,6 +50,11 @@ public class Mov_Jugador : MonoBehaviour
             animador.SetBool("Golpeando",true);
         }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            GetComponent<Inventario>().usarPoti();
+        }
+
         // Gestiona animaciones
         calcularAnimacion();
     }

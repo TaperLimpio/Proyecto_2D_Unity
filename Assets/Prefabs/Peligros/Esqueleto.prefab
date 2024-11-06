@@ -290,5 +290,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 1.5
-  damage: 10
+  damage: 15
   attackCooldown: 1
