@@ -10,49 +10,52 @@ public class EnemyAttack : MonoBehaviour
     private BoxCollider2D colision;
     private Animator animador;
 
+    // Variables para sonido
+    [SerializeField] private AudioSource audioSource;  // Referencia al AudioSource
+    [SerializeField] private AudioClip attackSound;    // Clip de sonido para el ataque
+
     void Start()
     {
         // Encuentra al jugador en la escena
         animador = GetComponentInParent<Animator>();
         colision = GetComponent<BoxCollider2D>();
     }
-    /*
-    void Update()
-    {
-        if (player != null)
-        {
-            // Comprobar la distancia al jugador
-            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-            if (distanceToPlayer <= attackRange && Time.time >= lastAttackTime + attackCooldown)
-            {
-                Attack();
-            }
-        }
-    }
-    */
     private void Attack(Collider2D other)
     {
         Debug.Log("¡Ataque realizado! Daño: " + damage);
-        animador.SetBool("corriendo",false);
-        animador.SetBool("atacando",true);
-        // Actualiza el tiempo del último ataque 
+
+        // Reproducir sonido de ataque
+        if (audioSource != null && attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);  // Reproduce el sonido de ataque
+        }
+
+        // Cambia las animaciones
+        animador.SetBool("corriendo", false);
+        animador.SetBool("atacando", true);
+
+        // Aplica el daño al jugador
         other.gameObject.GetComponent<Vida>().daño(damage);
         other.gameObject.GetComponent<Mov_Jugador>().tomarDaño();
+
+        // Actualiza el tiempo del último ataque
         lastAttackTime = Time.time;
     }
 
-    public void DontAttack(){
-        animador.SetBool("atacando",false);
-        animador.SetBool("corriendo",true);
+    public void DontAttack()
+    {
+        animador.SetBool("atacando", false);
+        animador.SetBool("corriendo", true);
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.tag == "Player" && Time.time >= lastAttackTime + attackCooldown){
-            Debug.Log("Se detecto al jugador");
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player" && Time.time >= lastAttackTime + attackCooldown)
+        {
+            Debug.Log("Se detectó al jugador");
             Attack(other);
             lastAttackTime = Time.time;
         }
     }
-
 }

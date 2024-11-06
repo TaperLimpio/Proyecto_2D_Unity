@@ -1,25 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Mov_Jugador : MonoBehaviour
 {
-    [SerializeField]
-    private float velocidad;
-    [SerializeField]
-    private float fuerzaSalto;
+    [SerializeField] private float velocidad;
+    [SerializeField] private float fuerzaSalto;
     private Vida vida;
-    [SerializeField]
-    private int limiteSaltos = 2;  // Límite de saltos (2 para doble salto)
+    [SerializeField] private int limiteSaltos = 2;  // Límite de saltos (2 para doble salto)
     private int saltosRestantes;  // Contador de saltos disponibles
     private Rigidbody2D rb;
     private Animator animador;
     private SpriteRenderer RenderSprite;
-    
+
     public bool peleandoconjefe = false;
+
+    // Variables para sonido
+    [SerializeField] private AudioSource audioSource;  // Referencia al AudioSource
+    [SerializeField] private AudioClip sonidoSalto;    // Clip de sonido para el salto
 
     // Start is called before the first frame update
     void Start()
@@ -40,14 +39,21 @@ public class Mov_Jugador : MonoBehaviour
         // Verifica si el jugador puede saltar (si tiene saltos restantes)
         if (Input.GetKeyDown(KeyCode.Space) && saltosRestantes > 0)
         {
+            // Agregar fuerza para el salto
             var impulso = new Vector2(0, fuerzaSalto);
             rb.AddForce(impulso, ForceMode2D.Impulse);
             saltosRestantes--;  // Reduce el número de saltos disponibles
+
+            // Reproducir el sonido de salto
+            if (audioSource != null && sonidoSalto != null)
+            {
+                audioSource.PlayOneShot(sonidoSalto);  // Reproduce el sonido de salto
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            animador.SetBool("Golpeando",true);
+            animador.SetBool("Golpeando", true);
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -59,8 +65,9 @@ public class Mov_Jugador : MonoBehaviour
         calcularAnimacion();
     }
 
-    public void NoAtacar(){
-        animador.SetBool("Golpeando",false);
+    public void NoAtacar()
+    {
+        animador.SetBool("Golpeando", false);
     }
 
     void calcularAnimacion()
@@ -97,16 +104,18 @@ public class Mov_Jugador : MonoBehaviour
             animador.SetBool("Cayendo", false);
             saltosRestantes = limiteSaltos;  // Restablece los saltos al tocar el suelo
         }
-
     }
 
-    public void tomarDaño(){
-        if(vida.getVida() == 0){
+    public void tomarDaño()
+    {
+        if (vida.getVida() == 0)
+        {
             morir();
         }
     }
 
-    public void morir(){
+    public void morir()
+    {
         animador.SetTrigger("Muerto");
         rb.bodyType = RigidbodyType2D.Static;
         if (GetComponent<Vida>()) vida.morir();
